@@ -1,0 +1,10 @@
+---
+- name: OpenSSH | restart ssh
+  service:
+    name: ssh
+    state: restarted
+
+- name: OpenSSH | reload ssh
+  service:
+    name: ssh
+    state: reloaded
