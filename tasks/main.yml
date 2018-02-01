@@ -21,17 +21,6 @@
     group: root
     mode: 0644
     validate: '/usr/sbin/sshd -T -f %s'
-  register: sshd_changed
-
-- name: OpenSSH | reload ssh
-  service:
-    name: ssh
-    state: reloaded
-  when: sshd_changed.changed
-
-- name: OpenSSH | restart ssh
-  service:
-    name: ssh
-    state: restarted
-  when: sshd_changed.changed
-
+  notify:
+    - OpenSSH | reload ssh
+    - OpenSSH | restart ssh
